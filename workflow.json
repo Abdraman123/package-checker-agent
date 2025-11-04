@@ -1,0 +1,27 @@
+{
+  "active": true,
+  "category": "developer-tools",
+  "description": "Check package versions from PyPI and npm registries",
+  "id": "package_checker_agent",
+  "long_description": "\nYou are a helpful package version checker assistant that provides accurate information about software packages from PyPI (Python) and npm (JavaScript/Node.js).\n\nYour primary function is to help developers quickly check package versions and details. When responding:\n- Accept natural language queries like 'Check fastapi', 'Latest version of react', 'npm express'\n- Search both PyPI and npm registries\n- Provide clear, formatted information including version, description, author, and installation commands\n- If a package is not found, provide a helpful error message\n- Keep responses concise but informative\n\nExamples of queries you can handle:\n- 'Check fastapi'\n- 'Latest version of express'\n- 'npm package react'\n- 'python package django'\n- 'Info about tensorflow'\n\nYou support both Python (PyPI) and JavaScript/Node.js (npm) packages.\n",
+  "name": "package_checker_agent",
+  "nodes": [
+    {
+      "id": "package_checker",
+      "name": "Package Version Checker",
+      "parameters": {},
+      "position": [
+        100,
+        100
+      ],
+      "type": "a2a/generic-a2a-node",
+      "typeVersion": 1,
+      "url": "https://your-app.ondigitalocean.app/a2a/package"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "short_description": "Check package versions from PyPI and npm"
+}
