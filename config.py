@@ -4,7 +4,7 @@ import os
 
 class Settings(BaseSettings):
     """Application settings"""
-    port: int = 8080
+    port: int = 8000
     app_name: str = "Package Version Checker A2A Agent"
     version: str = "1.0.0"
     
