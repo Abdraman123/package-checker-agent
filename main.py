@@ -192,5 +192,18 @@ async def a2a_endpoint(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    print(f"🚀 Starting {settings.app_name} on port {settings.port}")
-    uvicorn.run("main:app", host="0.0.0.0", port=settings.port, reload=False)
+    import os
+    
+    # Get port from environment (DO sets $PORT)
+    port = int(os.getenv("PORT", 8080))
+    
+    print(f"🚀 Starting {settings.app_name} on port {port}")
+    print(f"Environment PORT: {os.getenv('PORT', 'Not set, using default 8080')}")
+    
+    # CRITICAL: Must bind to 0.0.0.0, not 127.0.0.1
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",  # Listen on all interfaces
+        port=port,
+        reload=False  # Disable reload in production
+    )
