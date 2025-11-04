@@ -16,7 +16,7 @@
       ],
       "type": "a2a/generic-a2a-node",
       "typeVersion": 1,
-      "url": "https://package-checker-agent-3qsnr.ondigitalocean.app/"
+      "url": "https://package-checker-agent-3qsnr.ondigitalocean.app/a2a/package"
     }
   ],
   "pinData": {},
