@@ -166,24 +166,24 @@ class PackageChecker:
         license_info = package_info.get("license", "Unknown")
         homepage = package_info.get("homepage", "")
         
-        response = f"📦 **{name}** (from {source})\n\n"
-        response += f"**Version:** {version}\n"
-        response += f"**Description:** {description}\n"
-        response += f"**Author:** {author}\n"
-        response += f"**License:** {license_info}\n"
+        response = f"📦 {name} (from {source})\n\n"
+        response += f"Version: {version}\n"
+        response += f"Description: {description}\n"
+        response += f"Author: {author}\n"
+        response += f"License: {license_info}\n"
         
         if homepage:
-            response += f"**Homepage:** {homepage}\n"
+            response += f"Homepage: {homepage}\n"
         
         if source == "PyPI":
             requires_python = package_info.get("requires_python", "Any")
-            response += f"**Requires Python:** {requires_python}\n"
-            response += f"\n**Install:** `pip install {name}`"
+            response += f"Requires Python: {requires_python}\n"
+            response += f"\nInstall: `pip install {name}`"
         elif source == "npm":
             repository = package_info.get("repository", "")
             if repository:
-                response += f"**Repository:** {repository}\n"
-            response += f"\n**Install:** `npm install {name}`"
+                response += f"Repository: {repository}\n"
+            response += f"\nInstall: `npm install {name}`"
         
         return response
 
