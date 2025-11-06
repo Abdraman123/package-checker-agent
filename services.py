@@ -20,18 +20,7 @@ async def send_to_webhook(webhook_url: str, token: str, result: TaskResult):
     }
     
     # Telex expects the full JSON-RPC response format
-    payload = {
-        "jsonrpc": "2.0",
-        "method": "task/update",
-        "params": {
-            "taskId": result.id,
-            "contextId": result.contextId,
-            "status": {
-                "state": result.status.state,
-                "message": result.status.message.model_dump()
-            }
-        }
-    }
+    payload = result.model_dump()
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
