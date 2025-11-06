@@ -138,6 +138,20 @@ async def a2a_endpoint(request: Request):
             config=config
         )
         
+        # ⬇️ ADD THIS NEW CODE HERE ⬇️
+        # Send to webhook if provided
+        if config and config.pushNotificationConfig:
+            webhook_url = config.pushNotificationConfig.url
+            token = config.pushNotificationConfig.token
+            
+            # Import the function
+            from services import send_to_webhook
+            
+            # Send webhook notification asynchronously
+            import asyncio
+            asyncio.create_task(send_to_webhook(webhook_url, token, result))
+        # ⬆️ END OF NEW CODE ⬆️
+        
         # Build response
         response = JSONRPCResponse(
             id=rpc_request.id,

@@ -10,6 +10,31 @@ from models import (
 
 settings = get_settings()
 
+# ⬇️ ADD THIS NEW FUNCTION HERE ⬇️
+async def send_to_webhook(webhook_url: str, token: str, result: TaskResult):
+    """Send the final result to Telex webhook"""
+    
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "taskId": result.id,
+        "status": "completed",
+        "message": result.status.message.model_dump(),
+        "artifacts": [artifact.model_dump() for artifact in result.artifacts]
+    }
+    
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.post(webhook_url, json=payload, headers=headers)
+            response.raise_for_status()
+            print(f"✅ Webhook notification sent successfully")
+    except Exception as e:
+        print(f"❌ Failed to send webhook notification: {e}")
+# ⬆️ END OF NEW FUNCTION ⬆️
+
 class PackageChecker:
     """Service for checking package versions from PyPI and npm"""
     
